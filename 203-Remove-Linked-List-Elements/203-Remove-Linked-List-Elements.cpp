@@ -1,4 +1,14 @@
 // Recursion
+#include <bits/stdc++.h>
+using namespace std;
+struct ListNode {
+    int val;
+    ListNode *left;
+    ListNode *right;
+    ListNode() : val(0), left(nullptr), right(nullptr) {}
+    ListNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    ListNode(int x, ListNode *left, ListNode *right) : val(x), left(left), right(right) {}
+};
 
 class Solution {
 public:
