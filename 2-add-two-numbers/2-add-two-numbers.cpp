@@ -1,59 +1,35 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
+
 class Solution {
 public:
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        int remender=0;
-        ListNode* head=NULL, *tail=new ListNode();
-        head=tail;
-        
-        int temp = l1->val+l2->val;
-        int val = temp+remender;
-        tail->val = val%10;
-        remender = val/10;
-        l1=l1->next;
-        l2=l2->next; 
-        while(l1!=NULL && l2!=NULL){
-            int temp = l1->val+l2->val;
-            int val = temp+remender;
-            ListNode* ptr = new ListNode(val%10);
-            tail->next =ptr;
-            tail=ptr;
-            remender = val/10;
-            l1=l1->next;
-            l2=l2->next; 
+    ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
+        int carry = 0;
+        ListNode *head = new ListNode();
+        ListNode *tail = head;
+
+        while (l1 != NULL || l2 != NULL) {
+
+            int x = (l1 != NULL) ? l1->val : 0;
+            int y = (l2 != NULL) ? l2->val : 0;
+
+            int sum = x + y + carry;
+            carry = sum / 10;
+            
+            ListNode *newNode = new ListNode(sum % 10);
+
+            tail->next = newNode;
+            tail = tail->next;
+            
+            carry = sum / 10;
+
+            if (l1 != NULL)
+                l1 = l1->next;
+            if (l2 != NULL)
+                l2 = l2->next;
         }
-        
-        while(l2!=NULL){
-            int value = l2->val+remender; 
-            cout << 10%10<<" ";
-            ListNode* temp= new ListNode(value%10);
-            tail->next=temp;
-             tail=temp;
-            l2=l2->next;
-            remender = value/10;
+
+        if (carry) {
+            tail->next = new ListNode(carry);
         }
-         while(l1!=NULL){
-            int value = l1->val+remender; 
-            ListNode* temp= new ListNode(value%10);
-            tail->next=temp;
-            tail=temp;
-            l1=l1->next;
-             remender = value/10;
-        }
-        if(remender){
-            ListNode* temp= new ListNode(remender);
-            tail->next=temp;
-        }
-    return  head;
+        return head->next;
     }
-    
 };
