@@ -5,7 +5,7 @@ public:
         unordered_map<char, int> mp;
         int n = s.size(), begin = 0, end = 0;
         
-        for(int i=0; i<n; ++i)
+        for(int i=0; i<n; i++)
             mp[s[i]] = i;
         
         for(int i=0; i<n; ++i){
