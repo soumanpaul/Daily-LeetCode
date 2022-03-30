@@ -16,7 +16,12 @@ public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
         bool result = false;
         for(auto x : matrix){
-            result = binarySearch(x,0,x.size()-1,target);
+            
+            if(x[0] == target || x[x.size()-1] == target)
+                result = true;
+            if(x[0] <= target && x[x.size()-1] >= target )
+                result = binarySearch(x,0,x.size()-1,target);
+
             if(result){
                 break;
             } 
