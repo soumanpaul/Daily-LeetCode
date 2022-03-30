@@ -1,6 +1,7 @@
 class Solution {
     bool result;
 public:
+    
     int binarySearch(vector<int>& arr, int l, int r, int x) {
         if (l <= r) { 
             int mid = l + (r - l) / 2; 
@@ -15,17 +16,27 @@ public:
     
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
         bool result = false;
-        for(auto x : matrix){
+        int m  = matrix.size(), n = matrix[0].size();
+        int pivotIdx, pivotElement, left = 0, right = m*n-1;
+         
+        if (m == 0)
+            return false;
+        
+        while(left <= right){  
+            pivotIdx = (left + right) /2;
+            pivotElement = matrix[pivotIdx / n][pivotIdx % n];
             
-            if(x[0] == target || x[x.size()-1] == target)
-                result = true;
-            if(x[0] <= target && x[x.size()-1] >= target )
-                result = binarySearch(x,0,x.size()-1,target);
-
-            if(result){
-                break;
-            } 
+            if(target == pivotElement){
+                return true;
+            }
+            else {
+                if(target < pivotElement)
+                    right = pivotIdx -1;
+                else
+                    left = pivotIdx + 1;
+            }
         }
-        return result;
+            
+        return false;
     } 
 };
