@@ -28,13 +28,13 @@ public:
         stack.push(root);
         while(!stack.empty()){
             Node* tmp = stack.top();
-            ans.push_back(tmp->val);
+            ans.insert(ans.begin(),tmp->val);
             stack.pop();
             for(auto x : tmp->children){
                 stack.push(x);
             }
         }
-        reverse(ans.begin(), ans.end());
+        
         return ans;
     }
 };
