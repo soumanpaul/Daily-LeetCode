@@ -7,43 +7,29 @@ public:
         while(first < second){
             if(st[first] != st[second])
                 return false;
-           first++;
+            first++;
             second--;
         }
         return true;
     }
+    
     bool validPalindrome(string s) {
-        bool pel = true;
+        bool isPel = true;
         int count = 0;
-        
         int first =0, second = s.length()-1;
+        
         while(first < second){
             if(s[first] != s[second]){
-              // if(s[first+1] == s[second] && count < 1){
-                  if(isPalindrome(s,first)){
+                 if(isPalindrome(s,first))
                    return true; 
-                  }
-                // else{
-                //     count++;
-                //     second--;
-                //   }
-                // }else  if(s[first] == s[second-1]  && count < 1){
-                 else if(isPalindrome(s,second)){
+                 else if(isPalindrome(s,second))
                     return true; 
-                  }
-                // else{
-                //     count++;
-                //    first++;
-                //   }
-                // }
-                else {
+                 else 
                    return false;  
-                }
             }
-            
-           first++;
+            first++;
             second--;
         }
-        return pel;
+        return isPel;
     }
 };
