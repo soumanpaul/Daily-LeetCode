@@ -5,8 +5,8 @@ public:
         st.erase(i,1);
         int first =0, second = st.length()-1;
         while(first < second){
-            if(st[first] != st[second])
-                return false;
+            if(st[first] != st[second]){
+                return false;}
             first++;
             second--;
         }
@@ -20,12 +20,12 @@ public:
         
         while(first < second){
             if(s[first] != s[second]){
-                 if(isPalindrome(s,first))
-                   return true; 
-                 else if(isPalindrome(s,second))
-                    return true; 
-                 else 
-                   return false;  
+                 if(isPalindrome(s,first)){
+                   return true; }
+                 else if(isPalindrome(s,second)){
+                    return true; }
+                 else {
+                   return false; } 
             }
             first++;
             second--;
