@@ -4,10 +4,7 @@ public:
         int first=0, second = height.size()-1;
         int area =0;
         while(first < second){
-            int diff = second - first;
-            int small = min(height[first],height[second]);
-            int curr = diff * small;
-            if(curr > area) area = curr;
+            area = max(area, min(height[first],height[second])*(second -first));
             if(height[first] > height[second]) second--;
             else first++;
         }
