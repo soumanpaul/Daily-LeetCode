@@ -6,21 +6,13 @@ public:
      
         while(k--){
             int tmp = grid[grid.size()-1][grid[0].size()-1];
-            // 1st condition             
             for(int i=grid.size()-1; i >=0;i--){
                 for(int j=grid[i].size()-1; j>0;j--){
                         grid[i][j]=grid[i][j-1];
                 }
                 if(i!=0)
                     grid[i][0]=grid[i-1][grid[i-1].size()-1];
-            }
-            
-            // 2nd condition
-            //  for(int i=0; i <grid.size()-1;i++){
-            //     for(int j=grid[i].size()-1; j<grid[i].size();j++){
-            //             grid[i+1][0]=grid[i][j];
-            //     }
-            // }           
+            }        
             grid[0][0]=tmp;
         }
         return grid;
