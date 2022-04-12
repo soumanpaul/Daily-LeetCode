@@ -1,11 +1,11 @@
 class Solution {
 public:
     vector<vector<int>> shiftGrid(vector<vector<int>>& grid, int k) {
-        
-        vector<vector<int>> ans(grid.size(),vector<int>(grid[0].size(),0));
+        int numCols = grid[0].size();
+        int numRows = grid.size();
      
         while(k--){
-            int tmp = grid[grid.size()-1][grid[0].size()-1];
+            int tmp = grid[numRows-1][numCols-1];
             for(int i=grid.size()-1; i >=0;i--){
                 for(int j=grid[i].size()-1; j>0;j--){
                         grid[i][j]=grid[i][j-1];
