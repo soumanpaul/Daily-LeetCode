@@ -7,7 +7,7 @@ public:
             if(x & 1){
                 count++;
             }
-            x = x >> 1;
+         x >>= 1;
         }
         return count;
     }
