@@ -24,10 +24,9 @@ public:
         newFun(root);
         TreeNode* ans = new TreeNode(0);    
         TreeNode* ptr = ans;
-        int i=0;
-        while(i < vec.size()){
-            TreeNode* tmp = new TreeNode(vec[i]);
-            i++;
+       
+        for(int i : vec){
+            TreeNode* tmp = new TreeNode(i);
             ans->right = tmp;
             ans=ans->right;
         }
