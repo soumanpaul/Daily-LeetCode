@@ -10,20 +10,21 @@
  * };
  */
 class Solution {
-        vector<int> vec;
+       
 public:
-    void newFun(TreeNode* root){
+    void inorder(TreeNode* root, vector<int>& vec){
          if(root!=NULL){
-            increasingBST(root->left);
+            inorder(root->left,vec);
             vec.push_back(root->val);
-            increasingBST(root->right);
+            inorder(root->right,vec);
         }
         return ;
     }
     TreeNode* increasingBST(TreeNode* root) {
-        newFun(root);
-        TreeNode* ans = new TreeNode(0);    
-        TreeNode* ptr = ans;
+        vector<int> vec;
+        inorder(root,vec);
+        
+        TreeNode* ans = new TreeNode(0), * ptr = ans;
        
         for(int i : vec){
             TreeNode* tmp = new TreeNode(i);
