@@ -9,30 +9,32 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
 class Solution {
-     vector<int> vec;
+    TreeNode* first=new TreeNode(), *second=new TreeNode(), *last=new TreeNode(), *prev=new TreeNode(), *curr=NULL;
+    
+    int count =0;
+    
 public:
+    void swap(TreeNode* a, TreeNode* b){
+       int tmp=a->val;
+        a->val=b->val;
+        b->val = tmp;   
+    }
     void inorder(TreeNode* root){
         if(root==NULL) return;
         inorder(root->left);
-        vec.push_back(root->val);
+        if(root->val < prev->val){
+            second=root;
+            if(first->val==0){
+                first = prev;
+            }else return;
+        }    
+        prev = root;
         inorder(root->right);
     }
-    void inorder1(TreeNode* root){
-        if(root==NULL) return;
-        inorder1(root->left);
-        root->val=vec[0];
-        auto it = vec.begin();
-        vec.erase(it);
-        inorder1(root->right);
-    }
-
     void recoverTree(TreeNode* root) {
-       
         inorder(root);
-        sort(vec.begin(), vec.end());
-        inorder1(root);
-        
-
+        swap(first,second);
     }
 };
