@@ -17,7 +17,7 @@ public:
         while(map.find(key) != map.end()){
             key = getRand();
         }
-        cout << key<<endl;
+        cout << "http://tinyurl.com/" + key<<endl;
         map[key] = longUrl;
         return "http://tinyurl.com/" + key;
     }
