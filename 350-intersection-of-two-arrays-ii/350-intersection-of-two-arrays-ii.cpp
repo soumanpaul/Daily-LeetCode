@@ -9,13 +9,10 @@ public:
         for(int i=0;i< nums2.size();i++){
            mp2[nums2[i]]++;
         }
-        for(auto x : mp1){
-            if(mp2.find(x.first) !=mp2.end()){
-                auto y = mp2.find(x.first);
-                int item = min(x.second, y->second);
-                for(int i=0;i<item;i++){
-                    ans.push_back(x.first);
-                }
+        for(int x : nums2){
+            if(mp1[x]){
+                mp1[x]--;
+                ans.push_back(x);
             }
         }
         return ans;
