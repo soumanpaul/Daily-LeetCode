@@ -3,16 +3,16 @@ public:
     int maxOperations(vector<int>& nums, int k) {
         
         int count=0;
-        unordered_multiset<int> map;
+        unordered_map<int,int> map;
         
         for(int i=0; i< nums.size();i++){
             int item = k-nums[i]; 
-            auto it = map.find(item);
-            if(it !=map.end()){
-                map.erase(it);
+            // auto it = map.find(item);
+            if(map[item]>0){
+                map[item]-=1;
                 count++;
             }else 
-                map.insert(nums[i]); 
+                map[nums[i]]+=1; 
         }   
         return count;
     }
