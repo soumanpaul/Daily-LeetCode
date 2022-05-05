@@ -11,19 +11,13 @@
  */
 class Solution {
     unordered_set<int> set;
-    bool flag=false;
 public:
     bool inorder(TreeNode* root,int k){
         if(root==NULL) return false;
-        inorder(root->left,k);
-        int item = k-root->val;
-        if(set.find(item)!=set.end()){
-            flag=true;
-            return flag;
-        }
-        else set.insert(root->val);    
-        inorder(root->right,k);
-      return flag;  
+        if(set.find( k-root->val)!=set.end())
+            return true;
+        set.insert(root->val);    
+        return inorder(root->left,k) || inorder(root->right,k);;  
     }
     bool findTarget(TreeNode* root, int k) {
         return inorder(root,k);
