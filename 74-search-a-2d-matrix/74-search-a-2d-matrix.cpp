@@ -25,7 +25,7 @@ public:
         while(left <= right){  
             pivotIdx = (left + right) /2;
             pivotElement = matrix[pivotIdx / n][pivotIdx % n];
-            
+            cout << pivotElement<<endl;
             if(target == pivotElement){
                 return true;
             }
