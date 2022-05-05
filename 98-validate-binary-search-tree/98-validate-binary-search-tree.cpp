@@ -12,7 +12,6 @@
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
-        
         return ValidBST(root, nullptr, nullptr);
     }
     bool ValidBST(TreeNode* root, TreeNode* low, TreeNode* high){
