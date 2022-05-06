@@ -3,19 +3,17 @@ public:
     string removeDuplicates(string s) {
       stack<char>stk;
         int len = s.length();
-        for(int i=0;i<len;i++){
-            if(!stk.empty()){
-                if(stk.top()==s[i])
-                    stk.pop();
-                else stk.push(s[i]);
-            }  else stk.push(s[i]);
+        for(auto ch : s){
+            if(stk.empty()) stk.push(ch);
+            else if(stk.top()==ch) stk.pop();
+            else stk.push(ch);
         }
         string str;
         while(!stk.empty()){
             str+=stk.top();
             stk.pop();
         }
-        string ps =  string(str.rbegin(),str.rend());
-        return ps;
+       reverse(str.begin(),str.end());
+        return str;
     }
 };
