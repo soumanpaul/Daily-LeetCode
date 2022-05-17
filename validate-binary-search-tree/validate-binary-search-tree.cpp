@@ -9,16 +9,41 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-class Solution {
-public:
-    bool isValidBST(TreeNode* root) {
-        return ValidBST(root, nullptr, nullptr);
-    }
-    bool ValidBST(TreeNode* root, TreeNode* low, TreeNode* high){
-        if(root==NULL) return true;
-        if(( low != nullptr && root->val <= low->val) || (high != nullptr && root->val >= high->val))
-            return false;
-        return ValidBST(root->left, low, root) && ValidBST(root->right,root, high);
-    }
 
+class Solution {
+    
+public:
+    int minValue(TreeNode* root){
+        if(root==NULL) return INT_MAX;
+        int key = root->val;
+        int lkey = minValue(root->left);
+        int rkey = minValue(root->right);
+        
+        if(lkey <key) key = lkey;
+        if(rkey < key) key = rkey;
+        
+        return key;
+    }
+    
+    int maxValue(TreeNode* root){
+        if(root==NULL) return INT_MIN;
+        int key = root->val;
+        int lkey = maxValue(root->left);
+        int rkey = maxValue(root->right);
+        
+        if(lkey > key) key = lkey;
+        if(rkey > key) key = rkey;
+        
+        return key;
+        
+    }
+    
+    bool isValidBST(TreeNode* root) {
+        if(root==NULL) return true;    
+        if(root->left !=NULL  &&  maxValue(root->left) >= root->val)
+            return false;
+        if(root->right!= NULL && minValue(root->right) <= root->val)
+            return false;
+        return isValidBST(root->left) && isValidBST(root->right);
+    }
 };
