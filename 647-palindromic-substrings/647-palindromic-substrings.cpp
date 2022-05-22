@@ -1,30 +1,30 @@
 class Solution {
 public:
-    bool isPalindrom (string str){
-        int low=0, high=str.length()-1;
-        while(low < high){
-            if(str[low]!=str[high]){
-                return false;
-            }
-            low++;high--;
-        }
-        return true;
+    string s;
+    vector<vector<int>>dp;
+    
+    int f(int l , int r){
+        if(l>r)return 1;
+        if(l==r)return 1;
+        if(dp[l][r]!=-1)return dp[l][r];
+        if(s[l]!=s[r])return dp[l][r]=0;
+        if(f(l+1,r-1))return dp[l][r]=1;
+        return dp[l][r]=0;
     }
-    int countSubstrings(string str) {
-        
-        int count =0;
-        for (int i = 0; i < str.length(); i++) {
-            string subStr;
-
-            for (int j = i; j < str.length(); j++) {
-            
-                subStr += str[j];
-                if(isPalindrom(subStr)){
-                    count++;
-                }
-                
+    
+    int countSubstrings(string s) {
+        this->s=s;
+        int ans=0,n=s.size();
+        dp.resize(n,vector<int>(n,-1));
+        for(int i=0;i<n;i++){
+            for(int j=i;j<n;j++){
+                ans+=f(i,j);
             }
         }
-        return count;
+        return ans;
     }
 };
+
+
+
+
