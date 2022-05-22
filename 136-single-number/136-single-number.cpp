@@ -2,10 +2,10 @@ class Solution {
 public:
     int singleNumber(vector<int>& nums) {
         int len = nums.size();
-        int num=0;
-        for(int i=0; i< len;i++){
-            num^=nums[i]; 
+        
+        for(int i=0; i<len-1;i++){
+            nums[i+1]^=nums[i];
         }   
-        return num;
+        return nums[len-1];
     }
 };
