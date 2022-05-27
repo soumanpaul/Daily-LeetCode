@@ -1,14 +1,7 @@
 class Solution {
 public:
     int numberOfSteps(int num) {
-        int count =0;
-        while(num){
-            if(num%2==0){
-                num/=2;
-            }
-            else num-=1;
-            count++;
-        }
-        return count;
+        if (num == 0) return 0;
+     return log2(num) + bitset<32>(num).count();
     }
 };
