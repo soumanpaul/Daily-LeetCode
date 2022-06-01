@@ -1,23 +1,45 @@
 class Solution {
 public:
-    int divide(int dividend, int divisor) {
-        if(dividend==-2147483648 && divisor==-1) return 2147483647;
-        int count=0;
-        int sign = dividend < 0 ^ divisor < 0  ? -1: 1;
-        long long int div = abs(dividend);
-        long long int divsor = abs(divisor);
-        long long int temp=0;
-        long long int quotient=0;
-        
-       for (int i = 31; i >= 0; --i) {
-            if (temp + (divsor << i) <= div) {
-                temp += divsor << i;
-                quotient |= 1LL << i;
-            }
-        }
-        cout << sign << " "<< quotient;
+   
+int HALF_INT_MIN = -1073741824;
 
-        if(sign==-1) quotient=-quotient;
-        return quotient;
+int divide(int dividend, int divisor) {
+
+    if (dividend == INT_MIN && divisor == -1) {
+        return INT_MAX;
     }
+
+    int negatives = 2;
+    if (dividend > 0) {
+        negatives--;
+        dividend = -dividend;
+    }
+
+    if (divisor > 0) {
+        negatives--;
+        divisor = -divisor;
+    }
+    
+    int highestDouble = divisor;
+    int highestPowerOfTwo = -1;
+    
+    while (highestDouble >= HALF_INT_MIN && dividend <= highestDouble + highestDouble) {
+        highestPowerOfTwo += highestPowerOfTwo;
+        highestDouble += highestDouble;
+    }
+    
+    int quotient = 0;
+    while (dividend <= divisor) {
+        if (dividend <= highestDouble) {
+            quotient += highestPowerOfTwo;
+            dividend -= highestDouble;
+        }
+        highestPowerOfTwo >>= 1;
+        highestDouble >>= 1;
+    }
+    if (negatives != 1) {
+        return -quotient;
+    }
+    return quotient;
+}
 };
