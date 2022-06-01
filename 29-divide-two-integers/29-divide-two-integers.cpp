@@ -15,6 +15,8 @@ public:
                 quotient |= 1LL << i;
             }
         }
+        cout << sign << " "<< quotient;
+
         if(sign==-1) quotient=-quotient;
         return quotient;
     }
