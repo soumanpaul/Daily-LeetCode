@@ -19,13 +19,13 @@ public:
         vector<long long> vec;
         vec.push_back(S);
         
-        for(long long  i=0; i <N; i++){
-            long long item=total+A[i];
+        for(int i=1; i <= N; i++){
+            long long item=total+A[i-1];
             vec.push_back(item);
-            if(item>=x) break;
+            if(item >=x) break;
             total+=item;
         }
-      
+        
         long long k = vec.size()-1;
         while(x>0 && k>=0){
             if(x>=vec[k]) x-=vec[k];
