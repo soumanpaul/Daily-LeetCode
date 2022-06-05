@@ -11,18 +11,20 @@ class Solution{
 public:
     long buzzTime(long N, long M, long L, long H[], long A[])
     {
-        // code here
+        // normal binary search problem
         long low=0;
-        long high=max(L,M);
+        long high=max(M,L);
         long ans=0;
+        
         while(low<=high){
-            int mid=(low+high)/2;
+            long mid=(low+high)/2;
             long trackSpeed=0;
-            for(int i=0; i<N;i++){
-                if(H[i]+ mid*A[i]>L)
-                    trackSpeed+=H[i]+mid*A[i];
+            for(long i=0; i<N;i++){
+                long ithBikeSpeed=H[i]+mid*A[i];
+                if(ithBikeSpeed >=L)
+                    trackSpeed+=ithBikeSpeed;
             }
-            if(trackSpeed>=M){
+            if(trackSpeed >=M){
                 ans=mid;
                 high=mid-1;
             }else{
