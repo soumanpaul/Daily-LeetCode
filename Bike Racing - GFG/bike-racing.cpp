@@ -12,24 +12,24 @@ public:
     long buzzTime(long N, long M, long L, long H[], long A[])
     {
         // code here
-        long low = 0; 
-        long high = max(M,L);
-        long  tm =0;
+        long low=0;
+        long high=max(L,M);
+        long ans=0;
         while(low<=high){
-            long mid=(low+high)/2;
-            long sum=0;
-            for(long i=0; i<N;i++){
-                if(H[i]+ mid*A[i]>=L)
-                    sum+=H[i]+ mid*A[i];
+            int mid=(low+high)/2;
+            long trackSpeed=0;
+            for(int i=0; i<N;i++){
+                if(H[i]+ mid*A[i]>L)
+                    trackSpeed+=H[i]+mid*A[i];
             }
-            if(sum>=M) {
-                tm=mid;
+            if(trackSpeed>=M){
+                ans=mid;
                 high=mid-1;
             }else{
                 low=mid+1;
             }
         }
-        return tm;
+        return ans;
     }
 };
 
