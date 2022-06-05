@@ -13,23 +13,21 @@ class Solution
     public:
     long long countKdivPairs(int A[], int n, int K)
     {
+        //code here
+        unordered_map<int ,int> map;
+        long count=0;
         
-        unordered_map<int,int> map;
-        long long count=0;
-        
-        for(int i=0; i < n; i++){
-            
+        for(int i=0; i< n; i++){
             int rem = A[i]%K;
             
-            if(rem==0)
+            if(rem==0) 
                 count+=map[0];
-            else    
+            else{
                 count+=map[K-rem];
-           
+            }    
             map[rem]++;
         }
-       return count;
-        
+        return count;
     }
 };
 
