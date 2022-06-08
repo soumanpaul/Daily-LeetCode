@@ -73,15 +73,15 @@ struct TNode
 class Solution{
   public:
     
-    TNode* getBst(LNode *&head, int len){
+    TNode* getBst(LNode **head, int len){
       
         if(len <=0) return NULL;
         
         TNode *left = getBst(head,len/2);
         
-        TNode *bst = new TNode(*&head->data);
+        TNode *bst = new TNode((*head)->data);
         
-        *&head=*&head->next;
+        *head=(*head)->next;
         
         bst->left = left;
         
@@ -99,7 +99,7 @@ class Solution{
             len++;
             temp=temp->next;
         }
-        return getBst(head, len);
+        return getBst(&head, len);
     }
 };
 
