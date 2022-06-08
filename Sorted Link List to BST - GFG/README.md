@@ -1,5 +1,5 @@
 # Sorted Link List to BST
-## Hard 
+##  Hard 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">Given a Singly Linked List which has data members sorted in ascending order. Construct a&nbsp;Balanced Binary Search Tree&nbsp;which has same data members as the given Linked List.<br>
 <strong>Note: </strong>There might be nodes with same value.</span></p>
