@@ -1,21 +1,29 @@
 class Solution {
 public:
-  
-    static bool compare(vector<int>&a, vector<int>&b){
-     return a[1] > b[1];
+    struct Comparator{
+        
+     bool operator()(vector<int> &p1, vector<int> &p2){
+        return p1[1] < p2[1];
     }
+    };
     
     int maximumUnits(vector<vector<int>>& boxTypes, int truckSize) {
-        
-        int ans=0;
-        sort(boxTypes.begin(), boxTypes.end(), compare );
-        
-        for(auto x : boxTypes){
-            if(truckSize==0) break;
-            int p = truckSize >=x[0] ? x[0]: truckSize ;
-            ans += p*x[1];
-            truckSize-=p;
-        }
-        return ans;
+    priority_queue< vector<int>, vector<vector<int>>, Comparator> queue;
+    
+    for(auto boxType : boxTypes){
+        queue.push(boxType);
+    }
+    
+    int unitCount = 0;
+    while(!queue.empty()){
+        vector<int> top = queue.top();
+        queue.pop();
+        int boxCount = min(truckSize, top[0]);
+        unitCount += boxCount * top[1];
+        truckSize -= boxCount;
+        if(truckSize == 0)
+            break;
+    }    
+        return unitCount;
     }
 };
