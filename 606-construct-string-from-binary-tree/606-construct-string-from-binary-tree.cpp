@@ -8,9 +8,14 @@ public:
         if(root->left == NULL && root->right == NULL)
             return to_string(root->val);
         
+
+        
+        string s1 =  tree2str(root->left);
+        string s2 =  tree2str(root->right);
+        
         if(root->right == NULL)
-            return to_string(root->val) + "(" + tree2str(root->left) + ")";
-        return to_string(root->val) + "(" + tree2str(root->left) + ")(" + tree2str(root->right) + ")";
+            return to_string(root->val) + "(" + s1 + ")";
+        return to_string(root->val) + "(" +s1 + ")(" + s2 + ")";
         
     }
     
