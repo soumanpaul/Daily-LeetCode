@@ -3,29 +3,16 @@ public:
     
     string tree2str(TreeNode* root) {
         
-        string str = treeInString(root);
+        if(root== NULL) return "";
         
-        return str;
+        if(root->left == NULL && root->right == NULL)
+            return to_string(root->val);
+        
+        if(root->right == NULL)
+            return to_string(root->val) + "(" + tree2str(root->left) + ")";
+        return to_string(root->val) + "(" + tree2str(root->left) + ")(" + tree2str(root->right) + ")";
+        
     }
     
-    string treeInString(TreeNode * root){
-        
-        if(!root) return "";
-        
-        string s = to_string(root->val);
-        
-        string s1 =  treeInString(root->left);
-        string s2 =  treeInString(root->right);
-        
-        if(s2 !="" || s1!="")
-            s +=  "(" + s1  + ")";
-        else s += s1;
-        
-        if(s2 != "")
-            s +=  "(" + s2 + ")";
-        else
-            s +=  s2;
-        
-        return s;
-    }
+    
 };
